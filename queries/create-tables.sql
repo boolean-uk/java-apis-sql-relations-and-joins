@@ -1,21 +1,25 @@
+-- Directors table
 CREATE TABLE IF NOT EXISTS directors (
     id SERIAL PRIMARY KEY,
     name VARCHAR(70) NOT NULL,
     country VARCHAR(60) NOT NULL
 );
 
+--Stars table
 CREATE TABLE IF NOT EXISTS stars (
     id SERIAL PRIMARY KEY,
     name VARCHAR(70) NOT NULL,
     dob DATE
 );
 
+--Writers table
 CREATE TABLE IF NOT EXISTS writers (
     id SERIAL PRIMARY KEY,
     name VARCHAR(70) NOT NULL,
     email VARCHAR(70)
 );
 
+--Films table
 CREATE TABLE IF NOT EXISTS films (
     id SERIAL PRIMARY KEY,
     title VARCHAR(50) NOT NULL,
