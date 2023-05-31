@@ -66,4 +66,5 @@ from films, stars
 where
     films.star_id = stars.id
     and
+
     films.score = 9;
