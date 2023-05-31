@@ -36,7 +36,7 @@ values
 ('Frederick Frank','fred@frank.com'),
 ('Theodoros Angelopoulos','theo@angelopoulos.com'),
 ('Erik Hazelhoff Roelfzema','erik@roelfzema.com'),
-('Krzysztof Kieślowski','email@email.com'),
+('Krzysztof Kieslowski','email@email.com'),
 ('Edmond Rostand','edmond@rostand.com')
 )
 
