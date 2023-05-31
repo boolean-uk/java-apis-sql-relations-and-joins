@@ -1,0 +1,35 @@
+erDiagram
+    Film {
+        int id PK
+        text title
+        text director_id FK
+        int star_id FK
+        int writer_id FK
+        int year
+        text genre
+        int score
+    }
+
+    Director {
+        int id PK
+        text name
+        text country
+    }
+
+    Star {
+        int id PK
+        text name
+        date dob
+    }
+
+    Writer {
+        int id PK
+        text name
+        text email
+    }
+
+    Film }|..|{ Writer: has
+    Film }|..|{ Director: has
+    Film }|..|{ Star: has
+
+
