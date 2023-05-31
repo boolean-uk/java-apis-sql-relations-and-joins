@@ -46,13 +46,13 @@ CREATE TABLE IF NOT EXISTS films (
     writer_id INTEGER,
 
     CONSTRAINT fk_director_id
-        FOREIGN KEY(director_id) REFERENCES directors(id), --CHANGED
+        FOREIGN KEY(director_id) REFERENCES people(id),
 
     CONSTRAINT fk_star_id
-            FOREIGN KEY(star_id) REFERENCES stars(id),
+            FOREIGN KEY(star_id) REFERENCES people(id),
 
     CONSTRAINT fk_writer_id
-            FOREIGN KEY(writer_id) REFERENCES writers(id)
+            FOREIGN KEY(writer_id) REFERENCES people(id)
 );
 
 
