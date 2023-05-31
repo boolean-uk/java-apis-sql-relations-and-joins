@@ -27,3 +27,17 @@ where
 
 
 -- Make at least 5 more queries to demonstrate your understanding of joins, and other relationships between tables.
+
+-- Show directors and film titles for films where the director is from USA and films have a score of 8 or higher
+
+
+-- Show stars and film titles for films where the star is older than 50 years old
+
+
+-- Show the email of the writers that are also directors
+
+
+-- Show stars and film titles where the film is released at least 30 years after the star was born 
+
+
+-- Show stars for the films that have a score of 9
