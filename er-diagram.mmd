@@ -19,7 +19,7 @@ erDiagram
     Star {
         int id PK
         text name
-        text dob
+        date dob
     }
 
     Writer {
@@ -27,4 +27,9 @@ erDiagram
         text name
         text email
     }
+
+    Film }|..|{ Writer: has
+    Film }|..|{ Director: has
+    Film }|..|{ Star: has
+
 
