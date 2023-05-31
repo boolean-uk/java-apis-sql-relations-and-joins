@@ -45,7 +45,7 @@
 | 10   | Gerard Depardieu  | 27/12/1948 |
 
 
-### Write Table
+### Writer Table
 
 | ID   | Name                     | Email                 |
 |------|--------------------------|-----------------------|

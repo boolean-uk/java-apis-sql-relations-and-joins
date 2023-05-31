@@ -9,7 +9,7 @@ VALUES
     ('Anthony Mann', 'USA'),
     ('Theodoros Angelopoulos', 'Greece'),
     ('Paul Verhoeven', 'Netherlands'),
-    ('Krzysztof Kieslowski', 'Poland'),
+    ('Krzysztof Kieślowski', 'Poland'),
     ('Jean-Paul Rappeneau', 'France');
 
 --Populate Stars table
