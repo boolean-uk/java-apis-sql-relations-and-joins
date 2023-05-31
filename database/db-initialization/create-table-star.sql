@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS stars (
 id SERIAL PRIMARY KEY,
 name VARCHAR(50) NOT NULL,
-date_of_birth INTEGER NOT NULL
+date_of_birth VARCHAR(50) NOT NULL
 );

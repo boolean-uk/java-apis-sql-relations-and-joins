@@ -18,5 +18,5 @@ CONSTRAINT fk_star_id
 
 CONSTRAINT fk_writer_id
     FOREIGN KEY(writer_id)
-        REFERENCES writers(id)
+        REFERENCES writer(id)
 );

@@ -1,4 +1,4 @@
-INSERT INTO writers (name, writer_email)
+INSERT INTO writer (name, writer_email)
 VALUES ('Arthur C Clarke', 'arthur@clarke.com'),
 ('George Lucas', 'george@email.com'),
 ('Harper Lee', 'harper@lee.com'),
