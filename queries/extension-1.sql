@@ -136,7 +136,7 @@ FROM films
 WHERE director_id = writer_id;
 
 --Show directors and film titles for films with a score of 8 or higher
-SELECT name AS director, title
+SELECT name AS director, title, score
 FROM films
 JOIN people ON director_id = people.id
 WHERE score >= 8;
