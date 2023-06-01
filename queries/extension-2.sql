@@ -81,6 +81,21 @@ VALUES
     ('USA', 1),('USA', 2),('USA', 3),('Canada', 4),('UK', 5),
     ('USA', 6),('Greece', 7),('Netherlands', 8),('Poland', 9),('France', 10);
 
+--Populate Writers table
+INSERT INTO writers (email, person_id)
+VALUES
+    ('arthur@clarke.com', 21),
+    ('george@email.com', 2),
+    ('harper@lee.com', 22),
+    ('james@cameron.com', 23),
+    ('boris@boris.com', 24),
+    ('fred@frank.com', 25),
+    ('theo@angelopoulos.com', 7),
+    ('erik@roelfzema.com', 26),
+    ('email@email.com', 9),
+    ('edmond@rostand.com', 27);
+
+
 --Populate Actors table
 INSERT INTO actors (dob, person_id)
 VALUES
