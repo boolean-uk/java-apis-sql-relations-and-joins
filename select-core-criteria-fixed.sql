@@ -2,7 +2,7 @@
 SELECT title, name AS director_name
 FROM films AS f
 INNER JOIN directors AS d
-ON f.film_id = d.director_id;
+ON f.director_id = d.director_id;
 
 --Show the title, director and star name for all films
 SELECT title, d.name AS director_name, s.name AS star_name
