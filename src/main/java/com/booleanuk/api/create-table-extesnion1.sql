@@ -1,3 +1,10 @@
+first we have to drop all tables and then create from scratch the tables:
+
+DROP TABLE directors
+DROP TABLE stars
+DROP TABLE writers
+DROP TABLE films
+
 CREATE TABLE IF NOT EXISTS people (
 id SERIAL PRIMARY KEY,
 name TEXT
