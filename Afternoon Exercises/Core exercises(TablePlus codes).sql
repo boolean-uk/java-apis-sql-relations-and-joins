@@ -1,7 +1,7 @@
 --Create the director table
 CREATE TABLE IF NOT EXISTS director (
     director_id SERIAL PRIMARY KEY,
-    name TEXT,
+    director TEXT,
     country TEXT
 
 );
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS director (
 --Create the writer table
 CREATE TABLE IF NOT EXISTS writer (
     writer_id SERIAL PRIMARY KEY,
-    name TEXT,
+    writer TEXT,
     email TEXT
 
 );
@@ -18,13 +18,10 @@ CREATE TABLE IF NOT EXISTS writer (
 --Create the star table
 CREATE TABLE IF NOT EXISTS star (
     star_id SERIAL PRIMARY KEY,
-    name TEXT,
+    star TEXT,
     dob TEXT
 
 );
-
-ALTER TABLE star
-RENAME COLUMN name TO star;
 
 
 --Create the film table
@@ -244,3 +241,4 @@ JOIN
 	ORDER BY
 		film.title DESC
     ;
+
