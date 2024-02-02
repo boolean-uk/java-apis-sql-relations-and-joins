@@ -1,12 +1,12 @@
 -- I
 SELECT title, directors.name as director FROM films
-JOIN directors ON films.director_id = directors.id;
+    JOIN directors ON films.director_id = directors.id;
 
 -- II
 
 SELECT title, directors.name as director, stars.name as star FROM films
-JOIN directors ON films.director_id = directors.id
-JOIN stars ON films.star_id = stars.id;
+    JOIN directors ON films.director_id = directors.id
+    JOIN stars ON films.star_id = stars.id;
 
 -- III
 
