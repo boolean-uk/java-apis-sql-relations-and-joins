@@ -2,17 +2,14 @@
 erDiagram
     Director {
         int ID PK
-        string name
         strnig country
     }
     Star {
         int ID PK
-        string name
         date DOB
     }
     Writer {
         int ID PK
-        string name
         string email
     }
     Film {
@@ -22,8 +19,15 @@ erDiagram
         string genre
         int score
     }
+    Person {
+        int ID PK
+        string name
+    }
     
     Star ||--o{ Film : stars_in
     Director ||--o{ Film : directs
     Writer ||--o{ Film : writes
+    Star ||--|| Person : is
+    Director ||--|| Person : is
+    Writer ||--|| Person : is
 ````
