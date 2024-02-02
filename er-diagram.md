@@ -23,11 +23,21 @@ erDiagram
         int ID PK
         string name
     }
+    Cast {
+        int actorID FK
+        int filmID FK
+    }
+    Actor {
+        int ID PK
+        int personID FK
+    }
     
     Star ||--o{ Film : stars_in
-    Director ||--o{ Film : directs
-    Writer ||--o{ Film : writes
     Star ||--|| Person : is
+    Director ||--o{ Film : directs
     Director ||--|| Person : is
     Writer ||--|| Person : is
+    Writer ||--o{ Film : writes
+    Cast ||--o{ Actor : has
+    Cast ||--|| Film : in
 ````
