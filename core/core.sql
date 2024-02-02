@@ -104,13 +104,3 @@ Values
     ('Cyrano de Bergerac', 10, 10, 10, 1990, 'Historical', 9);
 
 
-
-SELECT title, author FROM books ORDER BY author;
-
-SELECT title, author, release_year FROM books WHERE release_year<2000 ORDER BY author;
-
-SELECT title, author, genre FROM books WHERE genre='Fantasy' ORDER BY author;
-SELECT title, name
-	FROM albums
-		JOIN artists
-			ON albums.artist_id = artists.id;
