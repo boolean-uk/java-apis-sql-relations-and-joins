@@ -1,21 +1,29 @@
-DROP TABLE films, directors, stars, writers;
+DROP TABLE films, directors, stars, writers, people;
+
+CREATE TABLE IF NOT EXISTS people (
+	id SERIAL PRIMARY KEY,
+	name TEXT
+);
 
 CREATE TABLE IF NOT EXISTS directors (
 	id SERIAL PRIMARY KEY,
-	name TEXT,
-	country TEXT
+	country TEXT,
+    FOREIGN KEY(id) REFERENCES people(id)
 );
 
 CREATE TABLE IF NOT EXISTS stars (
 	id SERIAL PRIMARY KEY,
-	name TEXT,
-	birth DATE
+
+	birth DATE,
+
+	FOREIGN KEY(id) REFERENCES people(id)
 );
 
 CREATE TABLE IF NOT EXISTS writers (
 	id SERIAL PRIMARY KEY,
-	name TEXT,
-	email TEXT
+
+	email TEXT,
+	FOREIGN KEY(id) REFERENCES people(id)
 );
 
 CREATE TABLE IF NOT EXISTS films (
@@ -41,51 +49,66 @@ CREATE TABLE IF NOT EXISTS films (
 			REFERENCES writers(id)
 );
 
-INSERT INTO directors (
-	name, country
+INSERT INTO people (
+ 	name
 )
 VALUES
-    ('Stanley Kubrick', 'USA'),
-    ('George Lucas', 'USA'),
-    ('Robert Mulligan', 'USA'),
-    ('James Cameron', 'Canada'),
-    ('David Lean', 'UK'),
-    ('Anthony Mann', 'USA'),
-    ('Theodoros Angelopoulos', 'Greece'),
-    ('Paul Verhoeven', 'Netherlands'),
-    ('Krzysztof Kieslowski', 'Poland'),
-    ('Jean-Paul Rappeneau', 'France');
+    ('Stanley Kubrick'),
+    ('George Lucas'),
+    ('Robert Mulligan'),
+    ('James Cameron'),
+    ('David Lean'),
+    ('Anthony Mann'),
+    ('Theodoros Angelopoulos'),
+    ('Paul Verhoeven'),
+    ('Krzysztof Kieslowski'),
+    ('Jean-Paul Rappeneau');
+
+INSERT INTO directors (
+	id, country
+)
+VALUES
+    (1, 'USA'),
+    (2, 'USA'),
+    (3, 'USA'),
+    (4, 'Canada'),
+    (5, 'UK'),
+    (6, 'USA'),
+    (7, 'Greece'),
+    (8, 'Netherlands'),
+    (9, 'Poland'),
+    (10, 'France');
 
 
 INSERT INTO stars (
-	name, birth
+	id, birth
 )
 VALUES
-    ('Keir Dullea', '1936-05-30'),
-    ('Mark Hamill', '1951-09-25'),
-    ('Gregory Peck', '1916-04-05'),
-    ('Leonardo DiCaprio', '1974-11-11'),
-    ('Julie Christie', '1940-04-14'),
-    ('Charlton Heston', '1923-10-04'),
-    ('Manos Katrakis', '1908-08-14'),
-    ('Rutger Hauer', '1944-01-23'),
-    ('Juliette Binoche', '1964-03-09'),
-    ('Gerard Depardieu', '1948-12-27');
+    (1, '1928-07-26'),
+    (2, '1944-05-14'),
+    (3, '1925-08-23'),
+    (4, '1954-08-16'),
+    (5, '1908-03-25'),
+    (6, '1906-06-30'),
+    (7, '1935-04-27'),
+    (8, '1938-07-18'),
+    (9, '1941-06-27'),
+    (10, '1932-04-08');
 
 INSERT INTO writers (
-	name, email
+	id, email
 )
 VALUES
-    ('Arthur C Clarke', 'arthur@clarke.com'),
-    ('George Lucas', 'george@email.com'),
-    ('Harper Lee', 'harper@lee.com'),
-    ('James Cameron', 'james@cameron.com'),
-    ('Boris Pasternak', 'boris@boris.com'),
-    ('Frederick Frank', 'fred@frank.com'),
-    ('Theodoros Angelopoulos', 'theo@angelopoulos.com'),
-    ('Erik Hazelhoff Roelfzema', 'erik@roelfzema.com'),
-    ('Krzysztof Kieslowski', 'email@email.com'),
-    ('Edmond Rostand', 'edmond@rostand.com');
+    (1, 'arthur@clarke.com'),
+    (2, 'george@email.com'),
+    (3, 'harper@lee.com'),
+    (4, 'james@cameron.com'),
+    (5, 'boris@boris.com'),
+    (6, 'fred@frank.com'),
+    (7, 'theo@angelopoulos.com'),
+    (8, 'erik@roelfzema.com'),
+    (9, 'email@email.com'),
+    (10, 'edmond@rostand.com');
 
 
 INSERT INTO films(
