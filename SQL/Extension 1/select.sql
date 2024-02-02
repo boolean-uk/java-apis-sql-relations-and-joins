@@ -1,21 +1,22 @@
 -- I
 SELECT title, directors.name as director FROM films
-JOIN people on films.people_id = people.id
-JOIN directors on people.director_id = directors.id;
+    JOIN people on films.people_id = people.id
+    JOIN directors on people.director_id = directors.id;
 -- II
 
-SELECT title, directors.name as director, stars.name as star FROM films
-JOIN people on films.people_id = people.id
-JOIN directors ON people.director_id = directors.id
-JOIN stars ON people.star_id = stars.id;
+SELECT title, directors.name as director, stars.name as star
+    FROM films
+    JOIN people on films.people_id = people.id
+    JOIN directors ON people.director_id = directors.id
+    JOIN stars ON people.star_id = stars.id;
 
 -- III
 
 SELECT title, directors.name AS director, directors.country AS country
 	FROM films
-  JOIN people on films.people_id = people.id
+    JOIN people on films.people_id = people.id
 	JOIN directors ON people.director_id = directors.id
-  WHERE directors.country = 'USA';
+    WHERE directors.country = 'USA';
 
  -- IV
 SELECT title, directors.name AS director, writers.name AS writer
@@ -45,7 +46,7 @@ SELECT title, directors.name as director, year
 -- Show stars on movies rated 8 or higher
 SELECT title, stars.name, score
 	FROM films
-  JOIN people on films.people_id = people.id
+    JOIN people on films.people_id = people.id
 	JOIN stars ON people.star_id = stars.id
     WHERE score >= 8;
 
@@ -58,9 +59,9 @@ SELECT title, directors.name, genre, score
 
 -- Show who wrote Star wars
 SELECT title, writers.name as writer, genre, score
-	FROM films
-  JOIN people on films.people_id = people.id
-	JOIN writers ON people.writer_id = writers.id
+    FROM films
+    JOIN people on films.people_id = people.id
+    JOIN writers ON people.writer_id = writers.id
     WHERE title LIKE '%Star Wars%';
 
 -- Show the stars of the highest scored movies
