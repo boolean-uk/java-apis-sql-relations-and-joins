@@ -69,7 +69,7 @@ VALUES
     ('Krzysztof Kieslowski', 'email@email.com'),
     ('Edmond Rostand', 'edmond@rostand.com')
 
-INSERT INTO movies (
+INSERT INTO films (
     title,
     year,
     director_id,

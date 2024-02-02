@@ -1,7 +1,7 @@
 -- title and director for all films
 SELECT title, name AS director
 FROM films JOIN directors
-    ON director_id = directors.id);
+    ON director_id = directors.id;
 
 -- title, director and star of all films
 SELECT title, d.name AS director, s.name AS star
@@ -22,7 +22,7 @@ SELECT title FROM films
 WHERE w.name = d.name;
 
 -- directors and title for films with score 8 or higher
-SELECT name, title
+SELECT name AS director, title
 FROM films JOIN directors
     ON director_id = directors.id
 WHERE score >= 8;
@@ -52,7 +52,7 @@ FROM films JOIN directors
 WHERE year BETWEEN 1970 AND 1990;
 
 -- movie title, director, writer and star of either romance or scifi movies
-SELECT title, d.name as director, w.name as writer, s.name as star
+SELECT title, d.name AS director, w.name AS writer, s.name AS star
 FROM films
     JOIN directors AS d ON director_id = d.id
     JOIN actors AS s ON star_id = s.id
