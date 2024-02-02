@@ -1,0 +1,39 @@
+---
+title: Movie Database Extension 1
+---
+erDiagram
+    Person ||--o{ Director : "is"
+    Person ||--o{ Star : "is"
+    Person ||--o{ Writer : "is"
+    Director ||--o{ Film : "Directed"
+    Star ||--o{ Film : "Featured"
+    Writer ||--o{ Film : "Wrote"
+    Film{
+        SERIAL id PK
+        TEXT title
+        INTEGER year
+        TEXT genre
+        TEXT score
+        INTEGER directorId FK
+        INTEGER starId FK
+        INTEGER writerID FK
+    }
+    Director{
+        SERIAL id PK
+        TEXT name
+        TEXT country
+    }
+    Star{
+        SERIAL id PK
+        TEXT name
+        DATE dob
+    }
+    Writer{
+        SERIAL id PK
+        TEXT name
+        TEXT email
+    }
+    Person{
+        SERIAL id PK
+        TEXT name
+    }
