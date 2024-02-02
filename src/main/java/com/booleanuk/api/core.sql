@@ -69,17 +69,17 @@ INSERT INTO Directors (name, country) VALUES
   ('Jean-Paul Rappeneau', 'France');
 
 -- Populate Stars table
-INSERT INTO Stars (name, country) VALUES
-  ('Keir Dullea', 'USA'),
-  ('Mark Hamill', 'USA'),
-  ('Gregory Peck', 'USA'),
-  ('Leonardo DiCaprio', 'USA'),
-  ('Julie Christie', 'UK'),
-  ('Charlton Heston', 'USA'),
-  ('Manos Katrakis', 'Greece'),
-  ('Rutger Hauer', 'Netherlands'),
-  ('Juliette Binoche', 'Poland'),
-  ('Gerard Depardieu', 'France');
+INSERT INTO Stars (name, DOB) VALUES
+  ('Keir Dullea', '30/05/1936'),
+  ('Mark Hamill', '25/09/1951'),
+  ('Gregory Peck', '05/04/1916'),
+  ('Leonardo DiCaprio', '11/11/1974'),
+  ('Julie Christie', '14/04/1940'),
+  ('Charlton Heston', '04/10/1923'),
+  ('Manos Katrakis', '14/08/1908'),
+  ('Rutger Hauer', '23/01/1944'),
+  ('Juliette Binoche', '09/03/1964'),
+  ('Gerard Depardieu', '27/12/1948');
 
 -- Populate Films table
 INSERT INTO Films (title, year, genre, score, writer_id, director_id, star_id) VALUES
