@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS directors (
 CREATE TABLE IF NOT EXISTS stars (
 	id SERIAL PRIMARY KEY,
 	name TEXT,
-	birth TEXT
+	birth DATE
 );
 
 CREATE TABLE IF NOT EXISTS writers (
