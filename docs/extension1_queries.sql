@@ -3,18 +3,18 @@ FROM film, people
 WHERE film.people_id = people.id
 AND people.role = 'director'
 
-
+//
 SELECT film.title, people.name
 FROM film, director, star
 WHERE film.director_id = director.id
 AND film.star_id = star.id
+//
 
-
-SELECT film.title
-FROM film
-JOIN director
-ON film.director_id = director.id
-WHERE director.country = 'USA'
+SELECT film.title, people.name
+FROM film, people
+WHERE film.people_id = people.id
+AND people.role = 'director'
+AND people.country = 'USA'
 
 
 SELECT film.title
