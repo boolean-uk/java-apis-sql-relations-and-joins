@@ -105,7 +105,7 @@ INSERT INTO Casting (people_id, film_id) VALUES
 	(11, 1),
 	(12, 2),
 	(13, 3),
-	(14, 3),
+	(14, 4),
 	(15, 5),
 	(16, 6),
 	(17, 7),
@@ -215,7 +215,18 @@ INNER JOIN films
 	on casting.film_id = films.id
 ORDER BY films.id;
 
+-- Show title, cast and star of all movies
 
+SELECT title, TEMP.actor, people.name as star
+FROM(SELECT title, People.name as actor, films.id, films.star_id as temp_star
+			FROM Casting
+			INNER JOIN people
+				on casting.people_id = people.id
+			INNER JOIN films
+				on casting.film_id = films.id
+		ORDER BY films.id) AS TEMP
+INNER JOIN People
+	ON TEMP.temp_star = people.id
 
 
 
