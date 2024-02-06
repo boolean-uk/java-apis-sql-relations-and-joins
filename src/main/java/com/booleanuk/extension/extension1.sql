@@ -1,23 +1,12 @@
-CREATE TABLE IF NOT EXISTS films (
-    id SERIAL PRIMARY KEY,
-    title TEXT NOT NULL,
-    director_id INT,
-    star_id INT,
-    writer_id INT,
-    release_year INT NOT NULL,
-    genre TEXT NOT NULL,
-    score INT NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS people (
+CREATE TABLE IF NOT EXISTS People (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
+    country TEXT,
     date_of_birth DATE,
-    email TEXT,
-    role TEXT NOT NULL
+    email TEXT
 );
 
-CREATE TABLE IF NOT EXISTS films (
+CREATE TABLE IF NOT EXISTS Films (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     director_id INT,
@@ -26,38 +15,46 @@ CREATE TABLE IF NOT EXISTS films (
     release_year INT NOT NULL,
     genre TEXT NOT NULL,
     score INT NOT NULL,
-    FOREIGN KEY (director_id) REFERENCES people(id),
-    FOREIGN KEY (star_id) REFERENCES people(id),
-    FOREIGN KEY (writer_id) REFERENCES people(id)
+    FOREIGN KEY (director_id) REFERENCES People(id),
+    FOREIGN KEY (star_id) REFERENCES People(id),
+    FOREIGN KEY (writer_id) REFERENCES People(id)
 );
 
-INSERT INTO people (name, country, date_of_birth, email, role) VALUES
-  ('Stanley Kubrick', 'USA', NULL, NULL, 'Director'),
-  ('Keir Dullea', NULL, '1936-05-30', NULL, 'Star'),
-  ('Arthur C Clarke', NULL, NULL, 'arthur@clarke.com', 'Writer'),
-  ('George Lucas', 'USA', NULL, 'george@email.com', 'Director'),
-  ('Mark Hamill', NULL, '1951-09-25', NULL, 'Star'),
-  ('Robert Mulligan', 'USA', NULL, NULL, 'Director'),
-  ('Gregory Peck', NULL, '1916-04-05', NULL, 'Star'),
-  ('Harper Lee', NULL, NULL, 'harper@lee.com', 'Writer'),
-  ('James Cameron', 'Canada', NULL, 'james@cameron.com', 'Director'),
-  ('Leonardo DiCaprio', NULL, '1974-11-11', NULL, 'Star'),
-  ('David Lean', 'UK', NULL, NULL, 'Director'),
-  ('Julie Christie', NULL, '1940-04-14', NULL, 'Star'),
-  ('Boris Pasternak', NULL, NULL, 'boris@boris.com', 'Writer'),
-  ('Anthony Mann', 'USA', NULL, NULL, 'Director'),
-  ('Charlton Heston', NULL, '1923-10-04', NULL, 'Star'),
-  ('Frederick Frank', NULL, NULL, 'fred@frank.com', 'Writer'),
-  ('Theodoros Angelopoulos', 'Greece', NULL, 'theo@angelopoulos.com', 'Director'),
-  ('Manos Katrakis', NULL, '1908-08-14', NULL, 'Star'),
-  ('Paul Verhoeven', 'Netherlands', NULL, NULL, 'Director'),
-  ('Rutger Hauer', NULL, '1944-01-23', NULL, 'Star'),
-  ('Erik Hazelhoff Roelfzema', NULL, NULL, 'erik@roelfzema.com', 'Writer'),
-  ('Krzysztof Kieslowski', 'Poland', NULL, 'email@email.com', 'Director'),
-  ('Juliette Binoche', NULL, '1964-03-09', NULL, 'Star'),
-  ('Edmond Rostand', NULL, NULL, 'edmond@rostand.com', 'Writer'),
-  ('Jean-Paul Rappeneau', 'France', NULL, NULL, 'Director'),
-  ('Gerard Depardieu', NULL, '1948-12-27', NULL, 'Star');
+CREATE TABLE IF NOT EXISTS film_people (
+    film_id INT,
+    person_id INT,
+    role TEXT NOT NULL,
+    FOREIGN KEY (film_id) REFERENCES Films(id),
+    FOREIGN KEY (person_id) REFERENCES People(id)
+);
+
+INSERT INTO people (name, country, date_of_birth, email) VALUES
+  ('Stanley Kubrick', 'USA', NULL, NULL),
+  ('Keir Dullea', NULL, '1936-05-30', NULL),
+  ('Arthur C Clarke', NULL, NULL, 'arthur@clarke.com'),
+  ('George Lucas', 'USA', NULL, 'george@email.com'),
+  ('Mark Hamill', NULL, '1951-09-25', NULL),
+  ('Robert Mulligan', 'USA', NULL, NULL),
+  ('Gregory Peck', NULL, '1916-04-05', NULL),
+  ('Harper Lee', NULL, NULL, 'harper@lee.com'),
+  ('James Cameron', 'Canada', NULL, 'james@cameron.com'),
+  ('Leonardo DiCaprio', NULL, '1974-11-11', NULL),
+  ('David Lean', 'UK', NULL, NULL),
+  ('Julie Christie', NULL, '1940-04-14', NULL),
+  ('Boris Pasternak', NULL, NULL, 'boris@boris.com'),
+  ('Anthony Mann', 'USA', NULL, NULL),
+  ('Charlton Heston', NULL, '1923-10-04', NULL),
+  ('Frederick Frank', NULL, NULL, 'fred@frank.com'),
+  ('Theodoros Angelopoulos', 'Greece', NULL, 'theo@angelopoulos.com'),
+  ('Manos Katrakis', NULL, '1908-08-14', NULL),
+  ('Paul Verhoeven', 'Netherlands', NULL, NULL),
+  ('Rutger Hauer', NULL, '1944-01-23', NULL),
+  ('Erik Hazelhoff Roelfzema', NULL, NULL, 'erik@roelfzema.com'),
+  ('Krzysztof Kieslowski', 'Poland', NULL, 'email@email.com'),
+  ('Juliette Binoche', NULL, '1964-03-09', NULL),
+  ('Edmond Rostand', NULL, NULL, 'edmond@rostand.com'),
+  ('Jean-Paul Rappeneau', 'France', NULL, NULL),
+  ('Gerard Depardieu', NULL, '1948-12-27', NULL);
 
 INSERT INTO films (title, release_year, genre, score) VALUES
   ('2001: A Space Odyssey', 1968, 'Science Fiction', 10),
