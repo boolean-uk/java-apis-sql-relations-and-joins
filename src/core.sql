@@ -111,6 +111,9 @@ INSERT INTO writers(
 	    JOIN directors on director_id = directors.id
 	    WHERE score >= 8;
 
+	SELECT title, directors.country AS country from movies
+        join directors on director_id = directors.id
+        where country = 'USA';
 
     /*
         Finds all movies with an american director that have a score of 7 or higher
