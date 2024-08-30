@@ -65,5 +65,7 @@ JOIN Film ON Star.star_id = Film.star_id
 GROUP BY Star.star_name
 ORDER BY Star.star_name ASC;
 
+-- TODO: Prove Herman wrong. Select the country that has the directed the most films.
+-- NOTE: This will be easy.
 
 
