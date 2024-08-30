@@ -4,6 +4,8 @@ DROP TABLE IF EXISTS directors CASCADE;
 DROP TABLE IF EXISTS stars CASCADE;
 DROP TABLE IF EXISTS writers CASCADE;
 DROP TABLE IF EXISTS people CASCADE;
+DROP TABLE IF EXISTS casts CASCADE;
+DROP TABLE IF EXISTS actors CASCADE;
 
 CREATE DATABASE films;
 -- psql specific command:
@@ -37,6 +39,28 @@ CREATE TABLE directors(
   FOREIGN KEY(people_id) REFERENCES people(id)
 );
 
+CREATE TABLE casts(
+  id SERIAL PRIMARY KEY,
+
+  star_id integer NOT NULL,
+  director_id integer NOT NULL,
+  writer_email varchar(255) NOT NULL,
+
+  FOREIGN KEY(star_id) REFERENCES stars(id),
+  FOREIGN KEY(director_id) REFERENCES directors(id),
+  FOREIGN KEY(writer_email) REFERENCES writers(email)
+);
+
+CREATE TABLE actors(
+  id SERIAL PRIMARY KEY,
+
+  cast_id integer NOT NULL,
+  people_id integer NOT NULL,
+
+  FOREIGN KEY(cast_id) REFERENCES casts(id),
+  FOREIGN KEY(people_id) REFERENCES people(id)
+);
+
 CREATE TABLE films(
   id SERIAL PRIMARY KEY,
   title varchar(255) NOT NULL,
@@ -44,14 +68,10 @@ CREATE TABLE films(
   genre varchar(255) NOT NULL,
   score integer NOT NULL,
 
-  star_id integer,
-  director_id integer,
-  writer_email varchar(255),
+  cast_id integer NOT NULL,
 
   UNIQUE(title),
-  FOREIGN KEY(star_id) REFERENCES stars(id),
-  FOREIGN KEY(director_id) REFERENCES directors(id),
-  FOREIGN KEY(writer_email) REFERENCES writers(email)
+  FOREIGN KEY(cast_id) REFERENCES casts(id)
 );
 
 
@@ -126,14 +146,38 @@ INSERT INTO stars(people_id, birthday) VALUES
   (29, '09/03/1964'),
   (30, '27/12/1948');
 
-INSERT INTO films(title, year, genre, score, star_id, director_id, writer_email) VALUES
-  ('2001: A Space Odyssey', 1968, 'Science Fiction', 10, 1, 1, 'arthur@clarke.com'),
-  ('Star Wars: A New Hope', 1977, 'Science Fiction', 7, 2, 2, 'george@email.com'),
-  ('To Kill A Mockingbird', 1962, 'Drama', 10, 3, 3, 'harper@lee.com'),
-  ('Titanic', 1997, 'Romance', 5, 4, 4, 'james@cameron.com'),
-  ('Dr Zhivago', 1965, 'Historical', 8, 5, 5, 'boris@boris.com'),
-  ('El Cid', 1961, 'Historical', 6, 6, 6, 'fred@frank.com'),
-  ('Voyage to Cythera', 1984, 'Drama', 8, 7, 7, 'theo@angelopoulos.com'),
-  ('Soldier of Orange', 1977, 'Thriller', 8, 8, 8, 'erik@roelfzema.com'),
-  ('Three Colours: Blue', 1993, 'Drama', 8, 9, 9, 'email@email.com'),
-  ('Cyrano de Bergerac', 1990, 'Historical', 9, 10, 10, 'edmond@rostand.com');
+INSERT INTO casts(star_id, director_id, writer_email) VALUES
+  (1, 1, 'arthur@clarke.com'),
+  (2, 2, 'george@email.com'),
+  (3, 3, 'harper@lee.com'),
+  (4, 4, 'james@cameron.com'),
+  (5, 5, 'boris@boris.com'),
+  (6, 6, 'fred@frank.com'),
+  (7, 7, 'theo@angelopoulos.com'),
+  (8, 8, 'erik@roelfzema.com'),
+  (9, 9, 'email@email.com'),
+  (10, 10, 'edmond@rostand.com');
+
+INSERT INTO actors(cast_id, people_id) VALUES
+  (1, 1),
+  (2, 2),
+  (3, 3),
+  (4, 4),
+  (5, 5),
+  (6, 6),
+  (7, 7),
+  (8, 8),
+  (9, 9),
+  (10, 10);
+
+INSERT INTO films(title, year, genre, score, cast_id) VALUES
+  ('2001: A Space Odyssey', 1968, 'Science Fiction', 10, 1),
+  ('Star Wars: A New Hope', 1977, 'Science Fiction', 7, 2),
+  ('To Kill A Mockingbird', 1962, 'Drama', 10, 3),
+  ('Titanic', 1997, 'Romance', 5, 4),
+  ('Dr Zhivago', 1965, 'Historical', 8, 5),
+  ('El Cid', 1961, 'Historical', 6, 6),
+  ('Voyage to Cythera', 1984, 'Drama', 8, 7),
+  ('Soldier of Orange', 1977, 'Thriller', 8, 8),
+  ('Three Colours: Blue', 1993, 'Drama', 8, 9),
+  ('Cyrano de Bergerac', 1990, 'Historical', 9, 10);
