@@ -1,71 +1,68 @@
 -- Show the title and director name for all films --
-SELECT Film.film_name, Director.director_name
-FROM Film
-JOIN Director ON Film.director_id = Director.director_id;
+SELECT films.film_name, directors.director_name
+FROM films
+JOIN directors ON films.director_id = directors.director_id;
 
 -- Show the title, director and star name for all films --
-SELECT Film.film_name, Director.director_name, Star.star_name
-FROM ((Film
-JOIN Director ON Film.director_id = Director.director_id)
-JOIN Star ON Film.star_id = Star.star_id);
+SELECT films.film_name, directors.director_name, stars.star_name
+FROM ((films
+JOIN directors ON films.director_id = directors.director_id)
+JOIN stars ON films.star_id = stars.star_id);
 
 -- Show the title of films where the director is from the USA --
-SELECT Film.film_name
-FROM Film
-JOIN Director ON Film.director_id = Director.director_id
-WHERE Director.director_country = 'USA';
+SELECT films.film_name
+FROM films
+JOIN directors ON films.director_id = directors.director_id
+WHERE directors.director_country = 'USA';
 
 -- Show only those films where the writer and the director are the same person --
-SELECT Film.film_name
-FROM Film
-JOIN Director ON Film.director_id = Director.director_id
-JOIN Writer ON Film.writer_id = Writer.writer_id
-WHERE Writer.writer_name = Director.director_name;
+SELECT films.film_name
+FROM films
+JOIN directors ON films.director_id = directors.director_id
+JOIN writers ON films.writer_id = writers.writer_id
+WHERE writers.writer_name = directors.director_name;
 
 -- Show directors and film titles for films with a score of 8 or higher --
-SELECT Director.director_name, Film.film_name
-FROM Director
-JOIN Film ON Director.director_id = film.director_id
-WHERE Film.film_score >= 8;
+SELECT directors.director_name, films.film_name
+FROM directors
+JOIN films ON directors.director_id = films.film.director_id
+WHERE films.film_score >= 8;
 
 -- Make at least 5 more queries to demonstrate your understanding of joins, and other relationships between tables. --
 
--- Get film with director, star and writer for all films in the crime genre
-SELECT Film.film_name, Director.director_name, Star.star_name, Writer.writer_name
-FROM (((Film
-JOIN Director ON Film.director_id = Director.director_id)
-JOIN Star ON Film.star_id = Star.star_id)
-JOIN Writer ON Film.writer_id = Writer.writer_id)
-WHERE Film.film_genre = 'Crime';
+-- Get film with director, star and writer for all films in the drama genre
+SELECT films.film_name, directors.director_name, stars.star_name, writers.writer_name
+FROM (((films
+JOIN directors ON films.director_id = directors.director_id)
+JOIN stars ON films.star_id = stars.star_id)
+JOIN writers ON films.writer_id = writers.writer_id)
+WHERE films.film_genre = 'Drama';
 
 -- Get number of movies each director has directed which scored above 9.
-SELECT Director.director_name, COUNT(Film.film_id)
-FROM Director
-JOIN Film ON Film.director_id = Director.director_id
-WHERE Film.film_score > 8
-GROUP BY Director.director_name;
+SELECT directors.director_name, COUNT(films.film_id)
+FROM directors
+JOIN films ON films.director_id = directors.director_id
+WHERE films.film_score > 8
+GROUP BY directors.director_name;
 
 -- Get all movies directed by an american in the drama genre
-SELECT Director.director_name, Film.film_name
-FROM Director
-JOIN Film ON Film.director_id = Director.director_id
-WHERE Director.director_country = 'USA' AND Film.film_genre = 'Drama';
+SELECT directors.director_name, films.film_name
+FROM directors
+JOIN films ON films.director_id = directors.director_id
+WHERE directors.director_country = 'USA' AND films.film_genre = 'Drama';
 
 --  Get number of movies each star has starred in which scored below 9
-SELECT Star.star_name, COUNT(Film.film_id)
-FROM Star
-JOIN Film ON Star.star_id = Film.star_id
-WHERE Film.film_score < 9
-GROUP BY Star.star_name;
+SELECT stars.star_name, COUNT(films.film_id)
+FROM stars
+JOIN films ON stars.star_id = films.star_id
+WHERE films.film_score < 9
+GROUP BY stars.star_name;
 
 -- Get number of movies each star has starred in based on the catalog and sort it based on name.
-SELECT Star.star_name, COUNT(Film.film_id)
-FROM Star
-JOIN Film ON Star.star_id = Film.star_id
-GROUP BY Star.star_name
-ORDER BY Star.star_name ASC;
-
--- TODO: Prove Herman wrong. Select the country that has the directed the most films.
--- NOTE: This will be easy.
+SELECT stars.star_name, COUNT(films.film_id)
+FROM stars
+JOIN films ON stars.star_id = films.star_id
+GROUP BY stars.star_name
+ORDER BY stars.star_name ASC;
 
 
