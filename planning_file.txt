@@ -1,0 +1,25 @@
+CREATE TABLE directors (id SERIAL PRIMARY KEY, name TEXT, country TEXT);
+
+CREATE TABLE stars (id SERIAL PRIMARY KEY, name TEXT, date_of_birth DATE);
+
+CREATE TABLE writers (id SERIAL PRIMARY KEY, name TEXT, email TEXT);
+
+CREATE TABLE films (
+	id SERIAL PRIMARY KEY,
+	title TEXT,
+	year INTEGER,
+	genre TEXT,
+	score INTEGER,
+	directorId INTEGER,
+	starId INTEGER,
+	writerId INTEGER,
+	CONSTRAINT fkDirector
+		FOREIGN KEY(directorId)
+			REFERENCES directors(id),
+	CONSTRAINT fkStar
+		FOREIGN KEY(starId)
+			REFERENCES stars(id),
+	CONSTRAINT fkWriter
+		FOREIGN KEY(writerId)
+			REFERENCES writers(id)
+);
