@@ -1,0 +1,39 @@
+Select title
+From people_film
+join direct_people 
+On people_film.director_id=direct_people.id
+join people on direct_people.id=people.id;
+
+
+Select distinct title, d.name, s.name
+From people_film
+join direct_people 
+On people_film.director_id=direct_people.id
+join people as d on direct_people.id=d.id
+join starring_people 
+on people_film.star_id=starring_people.id
+join people as s on starring_people.id=s.id;
+
+
+
+Select title, country
+From people_film join direct_people
+On people_film.director_id=direct_people.id
+join people 
+on direct_people.id=people.id
+Where direct_people.country='USA';
+
+
+Select title, name
+From people_film join direct_people
+On people_film.director_id=direct_people.id
+join writing_people on direct_people.id=writing_people.id
+join people 
+on direct_people.id=people.id;
+
+
+Select title, name, score
+From people_film join direct_people on people_film.director_id=direct_people.id
+join people
+on people.id=direct_people.id
+Where score>7;
