@@ -143,8 +143,3 @@ VALUES
             FROM film f JOIN star s ON f.id = s.film_id
             WHERE f.genre = 'Drama'
             	AND FLOOR(f.release_year / 10) = FLOOR(EXTRACT(YEAR FROM s.birth) / 10);
-
-
-
-
-
