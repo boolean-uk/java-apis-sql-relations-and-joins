@@ -20,9 +20,9 @@ CREATE TABLE IF NOT EXISTS stars (
 CREATE TABLE IF NOT EXISTS films(
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
-    director_id SERIAL NOT NULL,
-    star_id SERIAL NOT NULL,
-    writer_id SERIAL NOT NULL,
+    director_id INT NOT NULL,
+    star_id INT NOT NULL,
+    writer_id INT NOT NULL,
     year INT NOT NULL,
     genre TEXT NOT NULL,
     score INT NOT NULL,
