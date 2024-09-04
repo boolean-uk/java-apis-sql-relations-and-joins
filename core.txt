@@ -1,0 +1,170 @@
+// Normalizing data
+
+CREATE TABLE IF NOT EXISTS Director (
+    id SERIAL PRIMARY KEY,
+    director TEXT NOT NULL,
+    author_country TEXT NOT NULL
+);
+
+
+INSERT INTO Director (director, author_country)
+VALUES
+    ('Stanley Kubrick', 'USA'),
+    ('George Lucas', 'USA'),
+    ('Robert Mulligan', 'USA'),
+    ('James Cameron', 'Canada'),
+    ('David Lean', 'UK'),
+    ('Anthony Mann', 'USA'),
+    ('Theodoros Angelopoulos', 'Greece'),
+    ('Paul Verhoeven', 'Netherlands'),
+    ('Krzysztof Kieslowski', 'Poland'),
+    ('Jean-Paul Rappeneau', 'France');
+
+
+
+
+
+CREATE TABLE IF NOT EXISTS Star (
+    id SERIAL PRIMARY KEY,
+    star TEXT NOT NULL,
+    star_DOB TEXT NOT NULL
+);
+
+
+
+INSERT INTO Star (star, star_DOB)
+VALUES
+    ('Keir Dullea', '1936-05-30'),
+    ('Mark Hamill', '1951-09-25'),
+    ('Gregory Peck', '1916-04-05'),
+    ('Leonardo DiCaprio', '1974-11-11'),
+    ('Julie Christie', '1940-04-14'),
+    ('Charlton Heston', '1923-10-04'),
+    ('Manos Katrakis', '1908-08-14'),
+    ('Rutger Hauer', '1944-01-23'),
+    ('Juliette Binoche', '1964-03-09'),
+    ('Gerard Depardieu', '1948-12-27');
+
+
+
+
+CREATE TABLE IF NOT EXISTS Writer (
+    id SERIAL PRIMARY KEY,
+    writer TEXT NOT NULL,
+    writer_email TEXT NOT NULL
+);
+
+
+INSERT INTO Writer (writer, writer_email)
+VALUES
+    ('Arthur C Clarke', 'arthur@clarke.com'),
+    ('George Lucas', 'george@email.com'),
+    ('Harper Lee', 'harper@lee.com'),
+    ('James Cameron', 'james@cameron.com'),
+    ('Boris Pasternak', 'boris@boris.com'),
+    ('Frederick Frank', 'fred@frank.com'),
+    ('Theodoros Angelopoulos', 'theo@angelopoulos.com'),
+    ('Erik Hazelhoff Roelfzema', 'erik@roelfzema.com'),
+    ('Krzysztof Kieslowski', 'email@email.com'),
+    ('Edmond Rostand', 'edmond@rostand.com');
+
+
+
+CREATE TABLE IF NOT EXISTS Films (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    year INTEGER,
+    genre TEXT,
+    score INTEGER CHECK (score >= 0 AND score <= 10),
+    director_id INTEGER REFERENCES Director(id),
+    star_id INTEGER REFERENCES Star(id),
+  	writer_id INTEGER REFERENCES Writer(id)
+
+);
+
+
+INSERT INTO Films (title, year, genre, score, director_id, star_id, writer_id)
+VALUES
+    ('2001: A Space Odyssey', 1968, 'Science Fiction', 10, 1, 1, 1),
+    ('Star Wars: A New Hope', 1977, 'Science Fiction', 7, 2, 2, 2),
+    ('To Kill A Mockingbird', 1962, 'Drama', 10, 3, 3, 3),
+    ('Titanic', 1997, 'Romance', 5, 4, 4, 4),
+    ('Dr Zhivago', 1965, 'Historical', 8, 5, 5, 5),
+    ('El Cid', 1961, 'Historical', 6, 6, 6, 6),
+    ('Voyage to Cythera', 1984, 'Drama', 8, 7, 7, 7),
+    ('Soldier of Orange', 1977, 'Thriller', 8, 8, 8, 8),
+    ('Three Colours: Blue', 1993, 'Drama', 8, 9, 9, 9),
+    ('Cyrano de Bergerac', 1990, 'Historical', 9, 10, 10, 10);
+
+
+
+
+// Show the title and director name for all films
+SELECT Films.title, Director.director
+FROM Films
+JOIN Director ON Films.director_id = Director.id;
+
+
+// Show the title, director and star name for all films
+SELECT Films.title, Director.director, Star.star
+FROM Films
+JOIN Director ON Films.director_id = Director.id
+JOIN Star ON Films.star_id = Star.id;
+
+
+//Show the title of films where the director is from the USA
+SELECT Films.title, Director.director
+FROM Films
+JOIN Director ON Films.director_id = Director.id
+WHERE Director.author_country = 'USA'
+
+
+// Show only those films where the writer and the director are the same person
+SELECT Films.title
+FROM Films
+JOIN Director ON Films.director_id = Director.id
+JOIN Writer ON Writer.id = Director.id
+
+
+//Show directors and film titles for films with a score of 8 or higher
+SELECT Films.title, Director.director
+FROM Films
+JOIN Director ON Films.director_id = Director.id
+WHERE Films.score >= 8;
+
+
+
+// Make at least 5 more queries to demonstrate your understanding of joins, and other relationships between tables.
+SELECT Films.title, Star.star
+FROM Films
+JOIN Star ON Films.star_id = Star.id
+WHERE Star.star = 'Gregory Peck';
+
+
+
+SELECT Director.director, COUNT(Films.id) AS number_of_films
+FROM Films
+JOIN Director ON Films.director_id = Director.id
+GROUP BY Director.director;
+
+
+
+SELECT Star.star, Films.title
+FROM Films
+JOIN Star ON Films.star_id = Star.id;
+
+
+
+SELECT Films.title, Star.star
+FROM Films
+JOIN Star ON Films.star_id = Star.id
+WHERE Films.year = 1997;
+
+
+
+SELECT Films.title, Writer.writer, Writer.writer_email
+FROM Films
+JOIN Writer ON Films.writer_id = Writer.id;
+
+
+
