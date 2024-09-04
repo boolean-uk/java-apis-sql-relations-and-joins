@@ -180,5 +180,83 @@ INSERT INTO films (film_name, film_genre, film_release_year, film_score, directo
     (SELECT star_id FROM stars JOIN persons ON stars.person_id = persons.person_id WHERE person_name = 'Gerard Depardieu'),
     (SELECT writer_id FROM writers Join persons ON writers.person_id = persons.person_id WHERE person_name = 'Edmond Rostand'));
 
+-- Select statements from core --
+-- Show the title and director name for all films --
+SELECT films.film_name, persons.person_name
+    FROM films
+        JOIN directors ON directors.director_id = films.director_id
+        JOIN persons ON persons.person_id = directors.person_id;
 
+-- Show the title, director and star name for all films --
+SELECT films.film_name, director.person_name AS director, star.person_name AS star
+    FROM films
+        JOIN directors ON directors.director_id = films.director_id
+        JOIN persons AS director ON  directors.person_id = director.person_id
+        JOIN stars ON stars.star_id = films.star_id
+        JOIN persons AS star ON stars.person_id = star.person_id;
 
+-- Show the title of films where the director is from the USA --
+SELECT film_name
+    FROM films
+        JOIN directors ON films.director_id = directors.director_id
+        JOIN persons ON directors.person_id = persons.person_id
+            WHERE persons.person_country='USA';
+
+-- Show only those films where the writer and the director are the same person --
+SELECT film_name
+    FROM films
+        JOIN directors ON films.director_id = directors.director_id
+        JOIN persons AS director ON directors.person_id = director.person_id
+        JOIN writers ON films.writer_id = writers.writer_id
+        JOIN persons AS writer ON writers.person_id = writer.person_id
+        WHERE director.person_name = writer.person_name;
+
+-- Show directors and film titles for films with a score of 8 or higher --
+SELECT persons.person_name, films.film_name
+    FROM films
+        JOIN directors ON directors.director_id = films.director_id
+        JOIN persons ON persons.person_id = directors.person_id
+            WHERE films.film_score >= 8;
+
+-- Make at least 5 more queries to demonstrate your understanding of joins, and other relationships between tables. --
+-- Get film with director, star and writer for all films in the drama genre
+SELECT films.film_name, director.person_name AS director, star.person_name AS star, writer.person_name AS writer
+    FROM films
+        JOIN directors ON directors.director_id = films.director_id
+        JOIN persons AS director ON  directors.person_id = director.person_id
+        JOIN stars ON stars.star_id = films.star_id
+        JOIN persons AS star ON stars.person_id = star.person_id
+        JOIN writers ON writers.writer_id = films.writer_id
+        JOIN persons AS writer ON writers.person_id = writer.person_id
+            WHERE films.film_genre = 'Drama';
+
+-- Get number of movies each director has directed which scored above 9.
+SELECT persons.person_name, COUNT(films.film_id)
+    FROM directors
+        JOIN films ON films.director_id = directors.director_id
+        JOIN persons on persons.person_id = directors.person_id
+            WHERE films.film_score > 8
+                GROUP BY persons.person_name;
+
+-- Get all movies directed by an american in the drama genre
+SELECT persons.person_name, films.film_name
+    FROM films
+        JOIN directors ON films.director_id = directors.director_id
+        JOIN persons ON directors.person_id = persons.person_id
+            WHERE persons.person_country = 'USA' AND films.film_genre = 'Drama';
+
+--  Get number of movies each star has starred in which scored below 9
+SELECT persons.person_name, COUNT(films.film_id)
+    FROM films
+        JOIN stars ON stars.star_id = films.star_id
+        JOIN persons ON stars.person_id = persons.person_id
+            WHERE films.film_score < 9
+                GROUP BY persons.person_name;
+
+-- Get number of movies each star has starred in based on the catalog and sort it based on name.
+SELECT persons.person_name, COUNT(films.film_id)
+    FROM persons
+        JOIN stars ON stars.person_id = persons.person_id
+        JOIN films ON films.star_id = stars.star_id
+            GROUP BY persons.person_name
+                ORDER BY persons.person_name ASC;
