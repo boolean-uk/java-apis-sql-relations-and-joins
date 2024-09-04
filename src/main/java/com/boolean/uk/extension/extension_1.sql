@@ -15,18 +15,27 @@ CREATE TABLE IF NOT EXISTS persons(
 
 CREATE TABLE IF NOT EXISTS directors(
     director_id SERIAL PRIMARY KEY,
-    person_id int REFERENCES persons(person_id) NOT NULL
+    person_id INTEGER,
+    CONSTRAINT fk_person_id
+        FOREIGN KEY (person_id)
+            REFERENCES persons(person_id)
 );
 
 
 CREATE TABLE IF NOT EXISTS stars(
     star_id SERIAL PRIMARY KEY,
-    person_id int REFERENCES persons(person_id) NOT NULL
+    person_id INTEGER,
+    CONSTRAINT fk_person_id
+        FOREIGN KEY (person_id)
+            REFERENCES persons(person_id)
 );
 
 CREATE TABLE IF NOT EXISTS writers(
     writer_id SERIAL PRIMARY KEY,
-    person_id int REFERENCES persons(person_id) NOT NULL
+    person_id INTEGER,
+    CONSTRAINT fk_person_id
+        FOREIGN KEY (person_id)
+            REFERENCES persons(person_id)
 );
 
 
@@ -36,9 +45,18 @@ CREATE TABLE IF NOT EXISTS films(
     film_genre VARCHAR(50) NOT NULL,
     film_release_year INT NOT NULL CHECK (1800 <= film_release_year AND film_release_year <= 9999),
     film_score INT NOT NULL CHECK (0 <= film_score AND film_score <= 10),
-    director_id INT REFERENCES directors(director_id) NOT NULL,
-    star_id INT REFERENCES stars(star_id) NOT NULL,
-    writer_id INT REFERENCES writers(writer_id) NOT NULL
+    director_id INTEGER,
+    star_id INTEGER,
+    writer_id INTEGER,
+    CONSTRAINT fk_director_id
+        FOREIGN KEY (director_id)
+            REFERENCES directors(director_id),
+    CONSTRAINT fk_star_id
+        FOREIGN KEY (star_id)
+            REFERENCES stars(star_id),
+    CONSTRAINT fk_writer_id
+        FOREIGN KEY (writer_id)
+            REFERENCES writers(writer_id)
 );
 
 

@@ -1,6 +1,12 @@
 CREATE TABLE IF NOT EXISTS casts (
-    film_id INT REFERENCES films(film_id) NOT NULL,
-    person_id INT REFERENCES persons(person_id) NOT NULL
+    film_id INTEGER,
+    person_id INTEGER,
+    CONSTRAINT fk_film_id
+        FOREIGN KEY (film_id)
+            REFERENCES films(film_id),
+    CONSTRAINT fk_person_id
+        FOREIGN KEY (person_id)
+            REFERENCES persons(person_id)
 );
 
 INSERT INTO persons (person_name, person_email, person_country, person_dob) VALUES

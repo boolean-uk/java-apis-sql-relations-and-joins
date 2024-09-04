@@ -25,7 +25,7 @@ WHERE writers.writer_name = directors.director_name;
 -- Show directors and film titles for films with a score of 8 or higher --
 SELECT directors.director_name, films.film_name
 FROM directors
-JOIN films ON directors.director_id = films.film.director_id
+JOIN films ON directors.director_id = films.director_id
 WHERE films.film_score >= 8;
 
 -- Make at least 5 more queries to demonstrate your understanding of joins, and other relationships between tables. --
