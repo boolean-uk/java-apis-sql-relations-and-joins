@@ -1,0 +1,144 @@
+create table people(
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL
+);
+
+insert into people
+  (name)
+values
+  ('Arthur C Clarke'),
+  ('George Lucas'),
+  ('Harper Lee'),
+  ('James Cameron'),
+  ('Boris Pasternak'),
+  ('Frederik Frank'),
+  ('Theodoros Angelopoulos'),
+  ('Erik Hazelhoff Roelfzema'),
+  ('Krzysztof Kieslowski'),
+  ('Edmond Rostand'),
+  ('Stanley Kubrick'),
+  ('Robert Mulligan'),
+  ('David Lean'),
+  ('Anthony Mann'),
+  ('Theodoros Angelopolous'),
+  ('Paul Verhoeven'),
+  ('Jean-Paul Rappeneau'),
+  ('Keir Dullea'),
+  ('Mark Hamill'),
+  ('Gregory Peck'),
+  ('Leonardo DiCaprio'),
+  ('Julie Christie'),
+  ('Charlton Heston'),
+  ('Manos Katrakis'),
+  ('Rutger Hauer'),
+  ('Juliette Binoche'),
+  ('Gerard Depardieu');
+
+create table if not exists writing_people(
+  id integer,
+  email TEXT NOT NULL,
+  
+  CONSTRAINT fk_writer
+        FOREIGN KEY(id)
+            REFERENCES people(id)
+);
+
+insert into writing_people
+  (id, email)
+values
+  (1, 'arthur@clarke.com'),
+  (2, 'george@email.com'),
+  (3, 'harper@lee.com'),
+  (4, 'james@cameron.com'),
+  (5, 'boris@boris.com'),
+  (6, 'fred@frank.com'),
+  (7, 'theo@angelopoulos.com'),
+  (8, 'erik@roelfzema.com'),
+  (9, 'email@email.com'),
+  (10, 'edmond@rostand.com');
+
+create table if not exists starring_people(
+  id integer,
+  dob TEXT NOT NULL,
+  
+  CONSTRAINT fk_star
+        FOREIGN KEY(id)
+            REFERENCES people(id)
+);
+
+insert into starring_people
+  (id, dob)
+values
+  (18, '30/05/1936'),
+  (19, '25/09/1951'),
+  (20, '04/05/1916'),
+  (21, '11/11/1971'),
+  (22, '14/04/1940'),
+  (23, '04/10/1923'),
+  (24, '14/08/1908'),
+  (25, '23/01/1944'),
+  (26, '09/03/1964'),
+  (27, '27/12/1948');
+
+
+create table if not exists direct_people(
+  id SERIAL PRIMARY KEY,
+  country TEXT NOT NULL
+);
+
+insert into direct_people
+  (id, country)
+values
+  (11, 'USA'),
+  (2, 'USA'),
+  (12, 'USA'),
+  (4, 'Canada'),
+  (13, 'UK'),
+  (14, 'USA'),
+  (15, 'Greece'),
+  (16, 'Netherlands'),
+  (9, 'Poland'),
+  (17, 'France');
+  
+  
+create table IF not exists people_film (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  year INTEGER NOT NULL,
+  genre TEXT NOT NULL,
+  score INTEGER NOT NULL,
+  
+  writer_id INTEGER NOT NULL,
+  
+  star_id INTEGER NOT NULL,
+  
+  director_id INTEGER NOT NULL,
+  
+  CONSTRAINT fk_writer
+        FOREIGN KEY(writer_id)
+            REFERENCES people(id),
+            
+  CONSTRAINT fk_director
+        FOREIGN KEY(director_id)
+            REFERENCES people(id),
+  
+  CONSTRAINT fk_star
+        FOREIGN KEY(star_id)
+            REFERENCES people(id)
+  
+  
+);
+
+insert into people_film
+  (title, year, genre, score, director_id, writer_id, star_id)
+values
+  ('2001: A Space Odyssey', 1968, 'Science Fiction', 10, 11,1,18),
+  ('Star Wars: A New Hope', 1977, 'Science Fiction', 7, 2,2,19),
+  ('To Kill a Mockingbird', 1962, 'Drama', 10, 12,3,20),
+  ('Titanic', 1997, 'Romance', 5, 4,4,21),
+  ('Dr Zhivago', 1965, 'Historical',8, 13,5,22),
+  ('El Cid', 1961, 'Historical', 6, 14,6,23),
+  ('Voyage to Cythera', 1984, 'Drama',8, 15,7,24),
+  ('Soldier of Orange', 1977, 'Thriller', 8, 16,8,25),
+  ('Three Colours: Blue', 1993, 'Drama', 8, 9,9,26),
+  ('Cyrano de Bergerac', 1990, 'Historical', 9, 17,10,27);
