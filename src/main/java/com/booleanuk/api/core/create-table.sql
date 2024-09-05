@@ -20,18 +20,22 @@ CREATE TABLE IF NOT EXISTS writer (
 
 
 
-CREATE TABLE IF NOT EXISTS books (
-                                     id SERIAL PRIMARY KEY,
-                                     title TEXT not null,
-                                     year TEXT not null,
-                                     genre TEXT not null,
-                                     score INTEGER not null,
-                                     author_id INTEGER,
-                                     publisher_id INTEGER,
-                                     CONSTRAINT fk_author
-                                     FOREIGN KEY(author_id)
-    REFERENCES author(id),
-    CONSTRAINT fk_publisher
-    FOREIGN KEY(publisher_id)
-    REFERENCES publisher(id)
-    );
+CREATE TABLE film (
+                      id SERIAL PRIMARY KEY,
+                      title TEXT NOT NULL,
+                      director_id INTEGER,
+                      star_id INTEGER,
+                      writer_id INTEGER,
+                      year TEXT NOT NULL,
+                      genre TEXT NOT NULL,
+                      score INTEGER NOT NULL
+  CONSTRAINT fk_director
+    FOREIGN KEY(director_id)
+      REFERENCES director(id),
+    CONSTRAINT fk_star
+      FOREIGN KEY(star_id)
+        REFERENCES star(id)
+  CONSTRAINT fk_writer
+      FOREIGN KEY(writer_id)
+        REFERENCES writer(id)
+);
