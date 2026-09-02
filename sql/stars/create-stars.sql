@@ -1,0 +1,6 @@
+CREATE TABLE stars (
+    id INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    dob DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

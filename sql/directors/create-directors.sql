@@ -1,0 +1,6 @@
+CREATE TABLE directors (
+    id INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    country VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
